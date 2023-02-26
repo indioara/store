@@ -1,0 +1,14 @@
+@import url("/src/assets/variables.scss");
+@import url("/src/assets/reset.css");
+
+
+
+body{
+    background-color: #070707;
+    height: 100%;
+}
+.conteiner {
+    
+    max-width: 1092px;
+    margin: 0 auto;
+}

@@ -1,14 +1,8 @@
 import { createStore } from 'vuex'
+import catalogModule from "@/store/catalog"
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    catalog: catalogModule
   }
 })
