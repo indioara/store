@@ -13,7 +13,7 @@
                 <select v-model="selectSort" @change="setSelectedSort(selectSort)">
                   <option value="" disabled>выберете из списка</option>
                   <option :value="option.value" v-for="option of sortOptions" :key="option.value">{{option.name }}</option>
-                </select> <p> {{ selectSort }}</p>
+                </select> 
               </label>
             </div>
           </div>
@@ -40,7 +40,7 @@
     },
     computed: {
       ...mapState({
-        list: state => state.catalog.list,
+        list: state => state.catalog.newList,
         sortOptions: state => state.catalog.sortOptions,
         newSelect: state => state.catalog.newSelect
       }),
