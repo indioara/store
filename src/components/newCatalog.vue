@@ -9,21 +9,37 @@
               <p class="new-catalog__subTitle"></p>
             </div>
             <div class="new-catalog__search-wrap">
-              <label for="s">Сортировка 
+              <div class="new-catalog__select-sort">
+                <p class="new-catalago__select-subtitle">сортировка</p>
                 <select v-model="selectSort" @change="setSelectedSort(selectSort)">
                   <option value="" disabled>выберете из списка</option>
                   <option :value="option.value" v-for="option of sortOptions" :key="option.value">{{option.name }}</option>
-                </select> 
-              </label>
+                </select>
+            </div>
+            <div class="new-catalog__select-shaw-count">
+                <p class="new-catalago__select-subtitle">На странице</p>
+                <select v-model="showCount" @change="setShowCount(showCount)">
+                    <option value="10">10</option>
+                    <option value="16">16</option>
+                    <option value="22">22</option>
+                </select>
+            </div>
             </div>
           </div>
           <ul class="new-catalog__list">
-            <li class="new-catalog__item" v-for="(item) of sortedOptions" :key="item.id">
+            <li class="new-catalog__item" v-for="(item) of setPagination" :key="item.id">
               <div class="catalog-img" ><img :src="require('@/assets/images/' + item.img)" alt=""></div>
               <p class="catalog-name">{{ item.name }}</p>
               <p class="catalog-price">{{ item.price }}</p>
             </li>
           </ul>
+          <div class="new-catalog-paginations">
+            <button class="pagination__btn-prev">prev</button>
+            <ul class="pagination__list">
+                <li class="pagination__page" v-for="(page, index) of setPage" :key="index"><button @click="changeTotalPage(index)">{{ index + 1 }}</button></li>
+            </ul>
+            <button class="pagination__btn-next" @click="aaa">next</button>
+          </div>
         </div>
       </div>
     </section>
@@ -35,22 +51,36 @@
   export default {
     data() {
       return {
-        selectSort: ''
+        selectSort: '',
+        showCount: 16,
       }
     },
     computed: {
       ...mapState({
         list: state => state.catalog.newList,
         sortOptions: state => state.catalog.sortOptions,
-        newSelect: state => state.catalog.newSelect
+        newSelect: state => state.catalog.newSelect,
+        totalPage: state => state.catalog.totalPage,
+        showCount: state => state.catalog.showCount
       }),
       ...mapGetters({
-        sortedOptions: "sortedOptions"
+        sortedOptions: "sortedOptions",
+        setPage: "setPage",
+        setPagination: "setPagination",
+
       })
     },
     methods: {
+        changeTotalPage(index){
+            this.setTotalPage(index + 1)
+        },
+        aaa(){
+            console.log(this.setPagination)
+        },
       ...mapMutations({
-        setSelectedSort: "setSelectedSort"
+        setSelectedSort: "setSelectedSort",
+        setTotalPage: "setTotalPage",
+        setShowCount: "setShowCount",
       })
     }
   }
@@ -116,5 +146,21 @@
     text-align: center;
     margin-top: 5px;
     color: #F0F0F0;
+}
+
+.new-catalog-paginations {
+    display: flex;
+    justify-content: center;
+}
+.pagination__btn-prev {
+}
+.pagination__list {
+    display: flex;
+}
+.pagination__page {
+    margin-left: 10px;
+}
+.pagination__btn-next {
+    margin-left: 10px;
 }
 </style>
