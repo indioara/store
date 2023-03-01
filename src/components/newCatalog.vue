@@ -34,7 +34,7 @@
             </li>
           </ul>
           <div class="new-catalog-paginations">
-            <button class="pagination__btn-prev">prev</button>
+            <button class="pagination__btn-prev" @click="parse">prev</button>
             <ul class="pagination__list">
                 <li class="pagination__page" v-for="(page, index) of setPage" :key="index"><button @click="changeTotalPage(index)">{{ index + 1 }}</button></li>
             </ul>
@@ -46,7 +46,8 @@
   </template>
   
   <script>
-  import { mapState, mapGetters, mapMutations } from 'vuex'
+import axios from 'axios'
+  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
   
   export default {
     data() {
@@ -71,9 +72,6 @@
       })
     },
     methods: {
-        changeTotalPage(index){
-            this.setTotalPage(index + 1)
-        },
         aaa(){
             console.log(this.setPagination)
         },
@@ -81,8 +79,13 @@
         setSelectedSort: "setSelectedSort",
         setTotalPage: "setTotalPage",
         setShowCount: "setShowCount",
+        parse: "parse",
       })
-    }
+    },
+    created() {
+    this.$store.dispatch("fetchList");
+    },
+  
   }
   </script>
   
