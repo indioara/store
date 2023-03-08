@@ -5,7 +5,7 @@ export default{
         
         newSelect: "",
 
-        totalPage: 2,
+        totalPage: 1,
 
         showCount: 16,
 
@@ -45,20 +45,17 @@ export default{
             })
         },
         setPage(state:any, getters:any){
-            return Math.ceil(getters.sortedOptions.length / state.showCount)
+            return Math.ceil(getters.sortedOptions.length / state.showCount )
         },
-        mathCount(state:any){
-            return state.showCount * state.totalPage
+        startIndex: (state:any) => {
+            return (state.totalPage - 1) * state.showCount
+          },
+        endIndex: (state:any, getters:any) => {
+            return Math.min(getters.startIndex + state.showCount, getters.sortedOptions.length)
         },
-        setPagination(state:any, getters:any){
-            if(state.totalPage == 1){
-                return getters.sortedOptions.slice(0, state.showCount)
-            }else if(state.totalPage == 2){
-                return getters.sortedOptions.slice(state.showCount, state.showCount * 2)
-            }else {
-                return getters.sortedOptions.slice(getters.mathCount, getters.mathCount + state.showCount)
-            }
-        }
+        paginatedOptions: (state:any, getters:any) => {
+            return getters.sortedOptions.slice(getters.startIndex, getters.endIndex)
+          },
 
     },
     mutations:{
@@ -83,9 +80,11 @@ export default{
             })
             state.newList = arr
             }
-            
-            
-            
+        },
+        setCurrentPage(state:any, currentPage:number){
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', currentPage.toString());
+            window.history.pushState({}, '', url.href);
         },
         setTotalPage(state:any,index:any){
             state.totalPage = index
@@ -108,7 +107,10 @@ export default{
           } catch (error) {
             console.error(error);
           }
-        }
+        },
+        setCurrentPage(context:any, currentPage:number){
+            context.commit('setCurrentPage', currentPage);
+        },
       }
       
    

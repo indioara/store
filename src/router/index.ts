@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import catalog from "@/views/catalog.vue"
+import productCart from "@/views/productCart.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,7 +13,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/catalog',
     name: 'catalog',
     component: catalog
-  }
+  },
+  {
+    path: '/catalog/:id',
+    name: 'product',
+    component: productCart
+  },
 ]
 
 const router = createRouter({
