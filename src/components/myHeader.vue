@@ -11,12 +11,15 @@
           </div>
           <div class="header__menu">
             <div class="header__lang-wrap lang">
-              <p class="header__lang_active">RU</p>
+              <p class="header__lang_active" @click="qwer">RU</p>
               <p class="vector">|</p>
               <p>EN</p>
             </div>
             <div class="cart">
-              <img src="@/assets/images/icons/cart.svg" alt="cart">
+              <router-link to="/cart">
+                <img src="@/assets/images/icons/cart.svg" alt="cart">
+                <p class="cart__item" v-if="cartList.length > 0">{{ cartList.length }}</p>
+              </router-link>
             </div>
             <div class="heart">
               <img src="@/assets/images/icons/heart.svg" alt="heart">
@@ -31,15 +34,28 @@
 <script>
 import uiNavBar from './UI/uiNavBar.vue'
 import {ref} from "vue"
+import { mapState } from 'vuex'
 export default {
   components: { uiNavBar },
-  setup(){
+  data(){
+    return{
 
+    }
+  },
+  computed:{
+    ...mapState({
+      cartList: state => state.product.cartList
+    })
+  },
+  methods:{
+    qwer(){
+      console.log(this.cartList)
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header {
 }
 .header__conteiner {
@@ -72,6 +88,17 @@ export default {
     margin-left: 5px;
   }
 }
+.cart__item{
+  border-radius: 50%;
+  background-color: yellow;
+  width: 25px;
+  text-align: center;
+  padding: 5px 0px;
+  top: 10px;
+  font-size: 12px;
+  right: -15px;
+  position: absolute;
+}
 .header__logo {
 }
 .logo {
@@ -90,7 +117,7 @@ export default {
   margin-left: 30px;
 }
 .cart {
-  
+  position: relative;
 }
 .heart {
 

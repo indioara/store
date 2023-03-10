@@ -31,7 +31,7 @@
             </div>
           </div>
             <ul class="new-catalog__list">
-            <li class="new-catalog__item" v-for="(item) of paginatedOptions" :key="item.id">
+            <li class="new-catalog__item" v-for="(item) of paginatedOptions" :key="item.id" @click="$router.push(`catalog/${item.id}`)">
               <div class="catalog-img" ><img :src="require('@/assets/images/' + item.img)" alt=""></div>
               <p class="catalog-name">{{ item.name }}</p>
               <p class="catalog-price">{{ item.price }}</p>

@@ -47,7 +47,9 @@ export default {
     connectus,
     myFooter,
   },
-
+  beforeMount() {
+    this.$store.dispatch("fetchList");
+    },
 }
 </script>
 
