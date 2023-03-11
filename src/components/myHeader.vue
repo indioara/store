@@ -22,7 +22,10 @@
               </router-link>
             </div>
             <div class="heart">
-              <img src="@/assets/images/icons/heart.svg" alt="heart">
+              <router-link to="/profile">
+                <img src="@/assets/images/icons/heart.svg" alt="heart">
+                <p class="cart__item" v-if="liked.length > 0">{{liked.length }}</p>
+              </router-link>
             </div>
           </div>
         </div>
@@ -44,7 +47,8 @@ export default {
   },
   computed:{
     ...mapState({
-      cartList: state => state.product.cartList
+      cartList: state => state.product.cartList,
+      liked: state => state.product.liked
     })
   },
   methods:{
@@ -120,7 +124,7 @@ export default {
   position: relative;
 }
 .heart {
-
+  position: relative;
 }
 .lang{
   display: flex;

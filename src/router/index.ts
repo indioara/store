@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import catalog from "@/views/catalog.vue"
 import productCart from "@/views/productCart.vue"
 import cart from "@/views/cart.vue"
+import profile from "@/views/profile.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'cart',
     component: cart
   },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: profile,
+  }
 ]
 
 const router = createRouter({

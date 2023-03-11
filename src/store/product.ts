@@ -3,10 +3,14 @@ export default{
         sizeOption: "",
         colorOption: "",
         cartList: [],
+        liked: [],
         
 
     }),
     mutations: {
+        setLiked(state:any, liked:any){
+            state.liked.push(liked)
+        },
         setSizeOption(state:any, sizeOption:string){
             state.sizeOption = sizeOption
         },

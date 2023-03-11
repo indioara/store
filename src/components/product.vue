@@ -18,10 +18,15 @@
               <p class="product__price">{{ item.price * val}} грн</p>
               <ui-options
               :list="item"
+              @sizeOptions="changeSizes"
+              @colorOptions="changeColor"
+              @changeVal="changeValue"
+              @valNext="valNext"
+              @valPrev="valPrev"
               ></ui-options>
               <div class="product__buttons">
                 <ui-button class="product__buy"  @click="addItemInCart(item)">купить</ui-button>
-                <button class="product__like"><img src="@/assets/images/icons/ilike.svg" alt="like"></button>
+                <button class="product__like"><img src="@/assets/images/icons/ilike.svg" alt="like" @click="addLiked(item)"></button>
               </div>
             </div>
           </div>
@@ -116,26 +121,30 @@ export default {
     }),
   },
   methods: {
+    valPrev(newValue){
+      this.val = newValue
+    },
+    valNext(newValue){
+      this.val = newValue
+    },
+    changeValue(newValue){
+      this.val = newValue
+      console.log(this.val)
+    },
+    changeColor(newValue){
+      this.colorOption = newValue
+    },
+    changeSizes(newValue){
+      this.sizeOption = newValue
+    },
     addItemInCart(item){
+      item.sizeOption = this.sizeOption
+      item.colorOption = this.colorOption
+      item.val = this.val
       this.setCartList(item)
       let q = confirm("Товар добавлен в карзину, перейти в корзину?")
       if(q == true){
         this.$router.push("/cart");
-      }
-    },
-    valNext(count){
-      if(this.val == count){
-        return
-      }else this.val++
-    },
-    valPrev(){
-      if(this.val == 1){
-        return
-      }else this.val--
-    },
-    changeVal(value){
-      if(this.val >= value){
-        this.val = value
       }
     },
     aaa(id){
@@ -146,8 +155,13 @@ export default {
       this.isOpen = !this.isOpen
     },
     ...mapMutations({
-    setCartList : "setCartList"
+    setCartList : "setCartList",
+    setLiked: "setLiked"
   }),
+  addLiked(item){
+    this.setLiked(item)
+    alert("Товар добавлен в избранное")
+  },
   },
   beforeMount() {
     this.$store.dispatch("fetchList");
