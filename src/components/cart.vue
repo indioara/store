@@ -15,7 +15,7 @@
                             <p class="cart__type">{{ item.type2 }}</p>
                         </div>
                         <div class="product__options">
-                                <select v-model="item.sizeOption" class="product__size-input">
+                                <select v-model="item.sizeOption" class="product__size-input" v-if="item.size">
                                     <option :value="size" v-for="size of item.size" :key="size" >{{ size }}</option>
                                 </select>
                                 <select v-model="item.colorOption" class="product__color-input">

@@ -1,15 +1,19 @@
 <template>
   <nav class="nav">
     <ul class="nav__wrap">
-      <li v-for="(item, index) of $store.state.catalog.select" 
-      :key="item.id" 
-      :class="{
-        nav__item_active: index === activeIndex
-      }"
-      @click="catIsActive($event, index)">
-        <span>{{ item.name }}</span>
-      </li>
-
+        <li v-for="(item, index) of $store.state.catalog.select" 
+        :key="item.id"
+        class="nav__item"
+        :class="{
+          nav__item_active: index === activeIndex
+        }"
+        @click="catIsActive($event, index)">
+        <router-link to="/catalog">
+          <span>{{ item.name }}
+          </span>
+        </router-link>
+          
+        </li>
     </ul>
   </nav>
 </template>
@@ -45,45 +49,34 @@ export default {
 </script>
 
 <style lang="scss">
-.nav {
-  z-index: 6;
-}
-.nav__wrap {
-  display: flex;
-  color: white;
-  justify-content: space-between;
-  font-family: 'Montserrat';
-  font-weight: 300;
-  li{
-    position: relative;
-    a:visited{
-      color: white;
-      span{
-      z-index: 2;
+  .nav{
+    &__wrap{
+      display: flex;
     }
-      
-    }
-  }
-}
-.nav__item_active::after{
-  background: white;
-  content: " ";
-  min-height: 125px;
-  clip-path: polygon(25% 26%, 75% 26%, 69% 53%, 18% 53%);
-  min-width: 219px;
-  display: block;
-  position: absolute;
-  left: -52px;
-  top: -39px;
-  z-index: -1;
-  
-}
-.nav__item_active{
-  
-    span{
-      color: #090909;
+    &__item{
+      height: 40px;
+      width: 164px;
+      clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+      color: #070707;
+      a:visited{
+        color:white;
+      }
+      z-index: 4;
+      font-family: 'Montserrat';
+      font-style: normal;
       font-weight: 700;
       font-size: 18px;
+      line-height: 22px;
+      /* identical to box height */
+      text-align: center;
+      color: white;
     }
-}
+    &__item_active{
+      a:visited{
+        color: #090909;
+      }
+      background-color: white;
+      color: #090909;
+    }
+  }
 </style>

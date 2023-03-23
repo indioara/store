@@ -1,9 +1,11 @@
 <template>
 <div class="product__options">
-    <p class="product__size">размер:</p>
+    <div class="product__size-wrap" v-if="list.size">
+        <p class="product__size">размер:</p>
         <select v-model="sizeOption" class="product__size-input" @change="changeSize">
             <option :value="size" v-for="size of list.size" :key="size" >{{ size }}</option>
         </select>
+    </div>
         <p class="product__color">Цвет:</p>
         <select v-model="colorOption" class="product__color-input" @change="changeColor">
             <option :value="color" v-for="color of list.color" :key="color">{{ color }}</option>
@@ -47,13 +49,13 @@ export default {
         return
         }else this.val++
         this.$emit("valNext", this.val)
-    },
+        },
         valPrev(){
             if(this.val == 1){
         return
         }else this.val--
         this.$emit("valPrev", this.val)
-    },
+        },
         changeVal(value){
             if(this.val >= value){
         this.val = value

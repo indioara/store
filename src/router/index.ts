@@ -4,6 +4,7 @@ import catalog from "@/views/catalog.vue"
 import productCart from "@/views/productCart.vue"
 import cart from "@/views/cart.vue"
 import profile from "@/views/profile.vue"
+import auth from "@/views/ayth.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,7 +31,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/profile',
     name: 'profile',
     component: profile,
-  }
+  },
+  {
+    path: '/auth',
+    name: 'auth',
+    component: auth,
+  },
 ]
 
 const router = createRouter({

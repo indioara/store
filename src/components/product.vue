@@ -172,6 +172,9 @@ export default {
 <style lang="scss">
 
   .product{
+    &__size-wrap{
+      display: flex;
+    }
     .recomend__list{
       cursor: pointer;
       display: flex;

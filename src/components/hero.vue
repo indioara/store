@@ -1,6 +1,7 @@
 <template>
   <section class="hero">
     <div class="conteiner hero__conteiner">
+      <ui-nav-bar></ui-nav-bar>
         <div class="hero__wrap">
             <div class="hero__left-content">
                 <h1 class="hero__title title">masons <br> <span>branding</span><br>wordshop</h1>
@@ -18,7 +19,9 @@
 </template>
 
 <script>
+import uiNavBar from './UI/uiNavBar.vue'
 export default {
+  components: { uiNavBar },
 
 }
 </script>
@@ -59,13 +62,13 @@ export default {
 .hero__trg{
   position: absolute;
   left: -106px;
-  top: 157px;
+  top: 127px;
   z-index: 1;
 }
 .hero__man{
   position: absolute;
   z-index: 2;
-  top: 0;
+  top: -40px;
   left: -129px;
 }
 .hero__text{

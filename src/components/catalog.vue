@@ -8,8 +8,8 @@
             </div>
             <div class="catalog__bottom">
                 <ul class="catalog__list">
-                    <li class="catalog__item" v-for="(item) of listItems.slice(0, 9)" :key="item.id">
-                        <a href="#">
+                    <li class="catalog__item" v-for="(item) of list.slice(0, 9)" :key="item.id">
+                        <a @click="$router.push(`catalog/${item.id}`)"> 
                             <div class="catalog__item-img-wrap">
                                 <img :src="require('@/assets/images/' + item.img)" alt="" class="catalog__item-img">
                             </div>
@@ -25,24 +25,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     setup(){
-        const listItems = [
-            {id: 1, name: "Футболка", text: "Эко материалы", img: "topSales1.png"},
-            {id: 2, name: "Футболка", text: "Эко материалы", img: "topSales2.png"},
-            {id: 3, name: "Футболка", text: "Эко материалы", img: "topSales1.png"},
-            {id: 4, name: "Футболка", text: "Эко материалы", img: "topSales2.png"},
-            {id: 5, name: "Футболка", text: "Эко материалы", img: "topSales1.png"},
-            {id: 6, name: "Футболка", text: "Эко материалы", img: "topSales2.png"},
-            {id: 7, name: "Футболка", text: "Эко материалы", img: "topSales1.png"},
-            {id: 8, name: "Футболка", text: "Эко материалы", img: "topSales2.png"},
-            {id: 9, name: "Футболка", text: "Эко материалы", img: "topSales1.png"},
-            {id: 10, name: "Футболка", text: "Эко материалы", img: "topSales2.png"},
-            {id: 11, name: "Футболка", text: "Эко материалы", img: "topSales1.png"},
-        ]
+        
         return{
-            listItems
         }
+    },
+    computed:{
+        ...mapState({
+            list: state => state.catalog.list
+        })
     }
 }
 </script>
@@ -94,6 +87,7 @@ export default {
     column-gap: 49px;
 }
 .catalog__item {
+    cursor: pointer;
     width: 375px;
     text-align: center;
     padding: 45px 0;

@@ -6,6 +6,10 @@ import "@/assets/style.scss"
 import components from "@/components/UI/index"
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import axios from 'axios'
+import mongoosePlagin from "@/plugins/server"
+
+
+
 
 
 

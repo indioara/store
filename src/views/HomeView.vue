@@ -2,7 +2,6 @@
   <main>
       <div class="main">
         <div class="conteiner">
-          <ui-nav-bar class="main_nav"></ui-nav-bar>
         </div>
       </div>
       <hero></hero>
@@ -58,14 +57,5 @@ export default {
   position: relative;
   
 }
-.main_nav{
-    position: absolute;
-    li{
 
-      margin-left: 50px;
-    }
-    li:First-child{
-      margin-left: 0px;
-    }
-}
 </style>
